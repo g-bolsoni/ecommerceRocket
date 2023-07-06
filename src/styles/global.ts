@@ -3,6 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import background from '../assets/images/background.svg';
 
+
 export default createGlobalStyle`
   * {
     margin: 0;
