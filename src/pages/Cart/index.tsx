@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   MdDelete,
   MdAddCircleOutline,
@@ -7,7 +6,6 @@ import {
 
 import { useCart } from '../../hooks/useCart';
 import { formatPrice } from '../../util/format';
-import { Container, ProductTable, Total } from './styles';
 
 interface Product {
   id: number;
@@ -19,7 +17,7 @@ interface Product {
 
 const Cart = (): JSX.Element => {
   const { cart, removeProduct, updateProductAmount } = useCart();
-  console.log(cart, removeProduct, updateProductAmount);
+
   const cartFormatted = cart.map(product => ({
     ...product,
     priceFormatted: formatPrice(product.price),
@@ -46,39 +44,40 @@ const Cart = (): JSX.Element => {
   }
 
   return (
-    <Container>
-      <ProductTable>
-
+    <section className='p-7 bg-white rounded'>
+      <div className='w-full'>
         <thead>
           <tr>
-            <th aria-label="product image" />
-            <th>PRODUTO</th>
-            <th>QTD</th>
-            <th>SUBTOTAL</th>
-            <th aria-label="delete icon" />
+            <th className='text-[#999] text-left p-3' aria-label="product image" />
+            <th className='text-[#999] text-left p-3'>PRODUTO</th>
+            <th className='text-[#999] text-left p-3'>QTD</th>
+            <th className='text-[#999] text-left p-3'>SUBTOTAL</th>
+            <th className='text-[#999] text-left p-3' aria-label="delete icon" />
           </tr>
         </thead>
         <tbody>
           {cartFormatted.map(product => (
             <tr data-testid="product" key={product.id}>
-              <td>
-                <img src={product.image} alt={product.title} />
+              <td className='p-3 border-b-2  border-gray-500'>
+                <img className='h-full' src={product.image} alt={product.title} />
               </td>
-              <td>
-                <strong>{product.title}</strong>
-                <span>{product.priceFormatted}</span>
+              <td className='p-3 border-b-2  border-gray-500'>
+                <strong className='text-zinc-400 block'>{product.title}</strong>
+                <span className='block mt-1 text-lg font-bold'>{product.priceFormatted}</span>
               </td>
-              <td>
-                <div>
+              <td className='p-3 border-b-2  border-gray-500'>
+                <div className='flex items-center'>
                   <button
                     type="button"
                     data-testid="decrement-product"
+                    className='bg-none border-0 p-2'
                     disabled={product.amount <= 1}
                     onClick={() => handleProductDecrement(product)}
                   >
-                    <MdRemoveCircleOutline size={20} />
-                  </button>
+                    <MdRemoveCircleOutline size={20} className='text-purple-500 transition-colors duration-200 hover:text-purple-600 disabled:text-[#7159c1] disabled:cursor-not-allowed' />
+                  </button> 
                   <input
+                    className='outline outline-1 outline-gray-500 rounded p-2 w-[50px]'
                     type="text"
                     data-testid="product-amount"
                     readOnly
@@ -86,17 +85,18 @@ const Cart = (): JSX.Element => {
                   />
                   <button
                     type="button"
+                    className='bg-none border-0 p-2'
                     data-testid="increment-product"
                     onClick={() => handleProductIncrement(product)}
                   >
-                    <MdAddCircleOutline size={20} />
+                    <MdAddCircleOutline size={20}  className='text-purple-500 transition-colors duration-200 hover:text-purple-600 disabled:text-[#7159c1] disabled:cursor-not-allowed' />
                   </button>
                 </div>
               </td>
-              <td>
-                <strong>{product.subTotal}</strong>
+              <td className='p-3 border-b-2  border-gray-500'>
+                <strong className='text-zinc-400 block'>{product.subTotal}</strong>
               </td>
-              <td>
+              <td className='p-3 border-b-2  border-gray-500'>
                 <button
                   type="button"
                   data-testid="remove-product"
@@ -108,17 +108,17 @@ const Cart = (): JSX.Element => {
             </tr>
           ))}
         </tbody>
-      </ProductTable>
+      </div>
 
-      <footer>
-        <button type="button">Finalizar pedido</button>
+      <footer className='mt-7 flex justify-between items-center'>
+        <button type="button" className='bg-purple-500 text-white border-0 rounded px-5 py-3 font-bold uppercase transition-all duration-200 hover:bg-purple-600'>Finalizar pedido</button>
 
-        <Total>
-          <span>TOTAL</span>
-          <strong>{total}</strong>
-        </Total>
+        <div className='flex items-baseline'>
+          <span className='text-zinc-800 font-bold'>TOTAL</span>
+          <strong className='text-2xl ml-2'>{total}</strong>
+        </div>
       </footer>
-    </Container>
+    </section>
   );
 };
 
