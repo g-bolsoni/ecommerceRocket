@@ -3,15 +3,31 @@ import { MdClose, MdMenu, MdOutlinePerson, MdOutlineShoppingBag, MdSearch, MdSho
 
 import logo from '../../assets/images/logo.png';
 import { useState } from 'react';
+import { api } from '../../services/api';
+import { useQuery } from '@tanstack/react-query';
 
-const Header = (): JSX.Element => {
+
+const getCategories = async () => {
+  const response = await api.get('products/categories');    
+  console.log(response.data);
+  
+  return response.data;
+}
+
+const Header = () => {
   const [showCategory, setShowCategory] = useState(false);
 
   function handleToggleCategory() {
     setShowCategory(!showCategory);
   }
 
+  const { data, isLoading } = useQuery({
+    queryKey: ['categories'],
+    queryFn: getCategories,
+  });
+  
   return (
+
     <header className='bg-transparent w-full flex justify-between items-center h-20 px-4'>
       <Link to="/" className='transition-opacity duration-200 hover:opacity-70'>
         <img src={logo} alt="Rocketshoes"  />
@@ -23,21 +39,37 @@ const Header = (): JSX.Element => {
           <MdClose size={24} color="#000" />
         </div>
 
-        <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
-          Masculino
-        </Link>
-        <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
-          Feminino
-        </Link>
-        <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
-          Infantil
-        </Link>
-        <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
-          Casual
-        </Link>
-        <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
-          Social
-        </Link>
+        {
+          isLoading ? (
+            <>
+              <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
+                Masculino
+              </Link>
+              <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
+                Feminino
+              </Link>
+              <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
+                Infantil
+              </Link>
+              <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
+                Casual
+              </Link>
+              <Link to="/" className='w-max transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
+                Social
+              </Link>
+            </>
+          ) : (
+            <>
+              {data.map((category: string, index: number) => (
+                <Link  key={index} to="/" className='w-max capitalize transition-all duration-200 border-primary-500 hover:border-b text-[#212121] text-base p-1'>
+                 {category}
+                </Link>
+              ))}
+            </>
+          )
+
+        }
+       
       </div>
 
 
