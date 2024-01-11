@@ -13,10 +13,6 @@ interface Product {
   image: string;
 }
 
-interface CartItemsAmount {
-  [key: number]: number;
-}
-
 const loadProducts = async () => {
   const response = await api.get<Product[]>('/products');
   return response.data;
@@ -26,13 +22,6 @@ const loadProducts = async () => {
 const Home = (): JSX.Element => {
   // const [products, setProducts] = useState<Product[]>([]);
   const { addProduct, cart } = useCart();
-
-  // const cartItemsAmount = cart.reduce((sumAmount, product) => {
-  //   const newSumAmount =  {...sumAmount};
-  //   newSumAmount[product.id] = product.amount;
-
-  //   return newSumAmount;
-  // }, {} as CartItemsAmount)
 
   // useEffect(() => {
   //   async function loadProducts() {
@@ -78,8 +67,6 @@ const Home = (): JSX.Element => {
               >
                 <div data-testid="cart-product-quantity" className='flex items-center p-3 bg-black opacity-70'>
                   <MdAddShoppingCart size={16} color="#FFF" className='mr-1' />
-                  {/* {cartItemsAmount[product.id] || 0} */}
-                  0
                 </div>
 
                 <span className='flex-1 text-center font-bold'>ADICIONAR AO CARRINHO</span>

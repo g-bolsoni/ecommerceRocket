@@ -47,19 +47,21 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   const addProduct = async (productId: number) => {
     try {
-      const updatedCart = [...cart]; 
+
+      const updatedCart = [...cart];
       //Verify if products exists
       const productExists = updatedCart.find(product => product.id === productId);
+
       //Get stock products
-      const stock = await api.get(`/stock/${productId}`);
-      const stockAmount = stock.data.amount;
+      // const stock = await api.get(`/stock/${productId}`);
+      // const stockAmount = stock.data.amount;
       const currentAmount = productExists ? productExists.amount : 0;
       const amount = currentAmount + 1;
 
-      if(amount > stockAmount){
-        toast.error('Quantidade solicitada fora de estoque');
-        return;
-      }
+      // if(amount > stockAmount){
+      //   toast.error('Quantidade solicitada fora de estoque');
+      //   return;
+      // }
 
       if(productExists){
         productExists.amount = amount;
@@ -69,8 +71,10 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
           ...product.data,
           amount: 1
         }
+        console.log(newProduct);
+
         updatedCart.push(newProduct);
-      }      
+      }
 
       setCart(updatedCart);
 
@@ -106,7 +110,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       }
       const stock = await api.get(`/stock/${productId}`);
       const stockAmount = stock.data.amount;
-      
+
       if(amount > stockAmount){
         toast.error('Quantidade solicitada fora de estoque');
         return;
