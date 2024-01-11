@@ -8,9 +8,9 @@ import { useQuery } from '@tanstack/react-query';
 
 
 const getCategories = async () => {
-  const response = await api.get('products/categories');    
+  const response = await api.get('products/categories');
   console.log(response.data);
-  
+
   return response.data;
 }
 
@@ -25,7 +25,7 @@ const Header = () => {
     queryKey: ['categories'],
     queryFn: getCategories,
   });
-  
+
   return (
 
     <header className='bg-transparent w-full flex justify-between items-center h-20 px-4'>
@@ -34,7 +34,7 @@ const Header = () => {
       </Link>
 
       <div className={`categories flex flex-col h-full w-full pt-20 fixed top-0 transition-all duration-500 bg-white z-20 pl-4 gap-0 ${showCategory ? 'left-0' : '-left-full'} md:relative md:flex-row md:left-0 md:pt-0 md:bg-transparent md:justify-center md:items-center md:gap-6 md:p-1 `}>
-        
+
         <div className={`close_categories absolute top-10 right-5 md:hidden ${showCategory ? 'block' : 'hidden'} `} onClick={() => handleToggleCategory()}>
           <MdClose size={24} color="#000" />
         </div>
@@ -69,7 +69,7 @@ const Header = () => {
           )
 
         }
-       
+
       </div>
 
 
