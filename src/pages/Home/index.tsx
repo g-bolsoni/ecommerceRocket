@@ -58,7 +58,7 @@ const Home = (): JSX.Element => {
             <li className='flex flex-col bg-white rounded-md p-5 ' key={product.id}>
               <img className="self-center max-w-[250px]" src={product.image} alt={product.title} />
               <strong className='text-base text-gray-800 mt-1'>{product.title}</strong>
-              <span className='text-xl font-bold mt-1 mb-5'>{product.price}</span>
+              <span className='text-xl font-bold mt-1 mb-5'>{formatPrice(product.price)}</span>
               <button
                 type="button"
                 data-testid="add-product-button"
