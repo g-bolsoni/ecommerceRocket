@@ -51,7 +51,7 @@ const Home = (): JSX.Element => {
 
   return (
     <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 list-none'>
-      {products.map(product => (
+      {/* {products.map(product => (
         <li className='flex flex-col bg-white rounded-md p-5 ' key={product.id}>
           <img className="self-center max-w-[250px]" src={product.image} alt={product.title} />
           <strong className='text-base text-gray-800 mt-1'>{product.title}</strong>
@@ -70,7 +70,7 @@ const Home = (): JSX.Element => {
             <span className='flex-1 text-center font-bold'>ADICIONAR AO CARRINHO</span>
           </button>
         </li>
-      ))}
+      ))} */}
     </section>
   );
 };
