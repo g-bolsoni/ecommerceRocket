@@ -1,7 +1,8 @@
 import "./styles/global.css";
 
 import { BrowserRouter } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ApplicationRoutes from './routes';
 import Header from './components/Header';
 import { CartProvider } from './hooks/useCart';

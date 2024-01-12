@@ -46,26 +46,26 @@ const Cart = (): JSX.Element => {
   return (
     <section className='p-7 bg-white rounded'>
       <div className='w-full'>
-        <thead>
-          <tr>
-            <th className='text-[#999] text-left p-3' aria-label="product image" />
-            <th className='text-[#999] text-left p-3'>PRODUTO</th>
-            <th className='text-[#999] text-left p-3'>QTD</th>
-            <th className='text-[#999] text-left p-3'>SUBTOTAL</th>
-            <th className='text-[#999] text-left p-3' aria-label="delete icon" />
-          </tr>
-        </thead>
-        <tbody>
+        <div className='w-full'>
+          <ul className=' grid-cols-5 hidden md:grid'>
+            <li className='text-[#999] text-left p-3' aria-label="product image"></li>
+            <li className='text-[#999] text-left p-3'>PRODUTO</li>
+            <li className='text-[#999] text-left p-3'>QTD</li>
+            <li className='text-[#999] text-left p-3 '>SUBTOTAL</li>
+            <li className='text-[#999] text-left p-3' aria-label="delete icon"></li>
+          </ul>
+        </div>
+        <div className='w-full'>
           {cartFormatted.map(product => (
-            <tr data-testid="product" key={product.id}>
-              <td className='p-3 border-b-2  border-gray-500'>
-                <img className='h-full' src={product.image} alt={product.title} />
-              </td>
-              <td className='p-3 border-b-2  border-gray-500'>
+            <ul data-testid="product" className='relative grid grid-cols-1 md:grid-cols-5 border-b-2 border-gray-500' key={product.id}>
+              <li className='p-3 flex items-center justify-center'>
+                <img className='w-40 h-40 object-scale-down' src={product.image} alt={product.title} />
+              </li>
+              <li className='p-3 flex items-center md:items-start justify-center flex-col'>
                 <strong className='text-zinc-400 block'>{product.title}</strong>
                 <span className='block mt-1 text-lg font-bold'>{product.priceFormatted}</span>
-              </td>
-              <td className='p-3 border-b-2  border-gray-500'>
+              </li>
+              <li className='p-3 flex items-center justify-center md:justify-start'>
                 <div className='flex items-center'>
                   <button
                     type="button"
@@ -77,7 +77,7 @@ const Cart = (): JSX.Element => {
                     <MdRemoveCircleOutline size={20} className='text-purple-500 transition-colors duration-200 hover:text-purple-600 disabled:text-[#7159c1] disabled:cursor-not-allowed' />
                   </button> 
                   <input
-                    className='outline outline-1 outline-gray-500 rounded p-2 w-[50px]'
+                    className='outline outline-1 outline-gray-500 rounded p-2 w-[50px] text-center'
                     type="text"
                     data-testid="product-amount"
                     readOnly
@@ -92,26 +92,27 @@ const Cart = (): JSX.Element => {
                     <MdAddCircleOutline size={20}  className='text-purple-500 transition-colors duration-200 hover:text-purple-600 disabled:text-[#7159c1] disabled:cursor-not-allowed' />
                   </button>
                 </div>
-              </td>
-              <td className='p-3 border-b-2  border-gray-500'>
+              </li>
+              <li className='hidden md:flex p-3 items-center justify-start'>
                 <strong className='text-zinc-400 block'>{product.subTotal}</strong>
-              </td>
-              <td className='p-3 border-b-2  border-gray-500'>
+              </li>
+              <li className='p-3 flex items-center justify-start'>
                 <button
                   type="button"
                   data-testid="remove-product"
+                  className='absolute top-5 right-3 md:relative md:top-0 md:right-0 '
                   onClick={() => handleRemoveProduct(product.id)}
                 >
                   <MdDelete size={20} />
                 </button>
-              </td>
-            </tr>
+              </li>
+            </ul>
           ))}
-        </tbody>
+        </div>
       </div>
 
-      <footer className='mt-7 flex justify-between items-center'>
-        <button type="button" className='bg-purple-500 text-white border-0 rounded px-5 py-3 font-bold uppercase transition-all duration-200 hover:bg-purple-600'>Finalizar pedido</button>
+      <footer className='mt-7 flex flex-col-reverse md:flex-row gap-3 md:gap-0 justify-between items-center'>
+        <button type="button" className='w-full md:w-max bg-green-500 text-white border-0 rounded px-5 py-3 font-bold uppercase transition-all duration-200 hover:bg-green-600'>Finalizar pedido</button>
 
         <div className='flex items-baseline'>
           <span className='text-zinc-800 font-bold'>TOTAL</span>

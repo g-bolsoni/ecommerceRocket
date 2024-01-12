@@ -76,6 +76,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         updatedCart.push(newProduct);
       }
 
+      toast.success('Produto adicionado com sucesso!');
       setCart(updatedCart);
 
     } catch {
@@ -90,6 +91,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
       if(productIndex >= 0){
         updatedCart.splice(productIndex, 1);
+        toast.success('Produto removido com sucesso!');
         setCart(updatedCart);
       }else{
         throw new Error();
@@ -121,6 +123,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
       if(productExists){
         productExists.amount = amount;
+        toast.success('Quantidade alterada com sucesso!');
         setCart(updatedCart);
       }else{
         throw new Error();

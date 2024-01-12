@@ -56,13 +56,17 @@ const Home = (): JSX.Element => {
         <>
           {data?.map((product) => (
             <li className='flex flex-col bg-white rounded-md p-5 ' key={product.id}>
-              <img className="self-center max-w-[250px]" src={product.image} alt={product.title} />
-              <strong className='text-base text-gray-800 mt-1'>{product.title}</strong>
-              <span className='text-xl font-bold mt-1 mb-5'>{formatPrice(product.price)}</span>
+              <img className="self-center w-80 h-80 object-scale-down" src={product.image} alt={product.title} />
+
+              <div className="informations mt-3 flex flex-col gap-3">
+                <strong className='text-base text-neutral-600 mt-1 line-clamp-2 h-12'>{product.title}</strong>
+                <span className='text-xl text-neutral-700 font-bold mt-1 mb-5'>{formatPrice(product.price)}</span>
+              </div>
+
               <button
                 type="button"
                 data-testid="add-product-button"
-                className='bg-purple-500 text-white border-0 rounded-md overflow-hidden mt-auto flex items-center transition-all duration-200 hover:bg-purple-600'
+                className='bg-green-800 text-white border-0 rounded-md overflow-hidden mt-auto flex items-center transition-all duration-200 hover:bg-green-900'
                 onClick={() => handleAddProduct(product.id)}
               >
                 <div data-testid="cart-product-quantity" className='flex items-center p-3 bg-black opacity-70'>
@@ -87,7 +91,7 @@ const Home = (): JSX.Element => {
           <button
             type="button"
             data-testid="add-product-button"
-            className='bg-purple-500 text-white border-0 rounded-md overflow-hidden mt-auto flex items-center transition-all duration-200 hover:bg-purple-600'
+            className='bg-green-500 text-white border-0 rounded-md overflow-hidden mt-auto flex items-center transition-all duration-200 hover:bg-green-600'
             onClick={() => handleAddProduct(product.id)}
           >
             <div data-testid="cart-product-quantity" className='flex items-center p-3 bg-black opacity-70'>
