@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MdClose, MdMenu, MdOutlinePerson, MdOutlineShoppingBag, MdSearch, MdShoppingBasket } from 'react-icons/md';
+import { MdClose, MdMenu, MdOutlinePerson, MdOutlineShoppingBag, MdSearch } from 'react-icons/md';
 
 import logo from '../../assets/images/logo.png';
 import { useState } from 'react';
@@ -9,8 +9,6 @@ import { useQuery } from '@tanstack/react-query';
 
 const getCategories = async () => {
   const response = await api.get('products/categories');
-  console.log(response.data);
-
   return response.data;
 }
 
