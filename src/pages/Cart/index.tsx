@@ -29,14 +29,13 @@ const Cart = (): JSX.Element => {
         return sumTotal + product.price * product.amount;
       }, 0)
     )
-  
+
   function handleProductIncrement(product: Product) {
       updateProductAmount({productId: product.id, amount: product.amount + 1});
   }
 
   function handleProductDecrement(product: Product) {
     updateProductAmount({productId: product.id, amount: product.amount - 1});
-    
   }
 
   function handleRemoveProduct(productId: number) {
@@ -75,7 +74,7 @@ const Cart = (): JSX.Element => {
                     onClick={() => handleProductDecrement(product)}
                   >
                     <MdRemoveCircleOutline size={20} className='text-purple-500 transition-colors duration-200 hover:text-purple-600 disabled:text-[#7159c1] disabled:cursor-not-allowed' />
-                  </button> 
+                  </button>
                   <input
                     className='outline outline-1 outline-gray-500 rounded p-2 w-[50px] text-center'
                     type="text"

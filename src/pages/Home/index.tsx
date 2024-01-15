@@ -18,7 +18,6 @@ const loadProducts = async () => {
   return response.data;
 }
 
-
 const Home = (): JSX.Element => {
   const { addProduct } = useCart();
 
