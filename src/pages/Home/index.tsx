@@ -4,7 +4,6 @@ import { api } from '../../services/api';
 import { formatPrice } from '../../util/format';
 import { useCart } from '../../hooks/useCart';
 import { useQuery } from '@tanstack/react-query';
-import Newsletter from '../../components/Newsletter';
 
 interface Product {
   id: number;
@@ -65,7 +64,6 @@ const Home = (): JSX.Element => {
         )
       }
       </section>
-      <Newsletter />
     </>
 
   );

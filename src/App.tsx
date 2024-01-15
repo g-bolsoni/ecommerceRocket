@@ -9,6 +9,9 @@ import { CartProvider } from './hooks/useCart';
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./services/queryClient";
 
+import Newsletter from "./components/Newsletter";
+import Footer from "./components/Footer";
+
 const App = (): JSX.Element => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -17,7 +20,9 @@ const App = (): JSX.Element => {
           <main className="mx-3 md:container md:mx-auto overflow-x-hidden">
             <Header />
             <ApplicationRoutes />
+            <Newsletter />
           </main>
+          <Footer />
           <ToastContainer autoClose={3000} />
         </CartProvider>
       </BrowserRouter>
