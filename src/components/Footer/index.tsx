@@ -19,7 +19,7 @@ const Footer = () => {
     });
     return (
         <footer className="bg-white w-full min-h-[400px] py-8 md:py-12">
-            <div className="mx-3 md:container md:mx-auto overflow-x-hidden flex flex-col md:flex-row gap-10">
+            <div className="mx-3 md:container md:mx-auto overflow-x-hidden flex flex-col gap-10">
                 <div className="flex flex-col gap-6 md:gap-0 md:flex-row justify-between items-start md:px-24">
                     <div className="institutional w-full flex flex-col gap-2 md:flex-[1_0_165px]">
                         <span className="text-base font-bold text-zinc-900 text-center md:text-left">Institucional</span>

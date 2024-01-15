@@ -22,7 +22,7 @@ const Newsletter = () => {
 
     const submitForm = (data: INewsletterSchema) => {
         console.log(data);
-        if(data.email.length == 0){
+        if(data.email.length === 0){
             toast.error('Falha ao enviar o email!');
             return;
         }
