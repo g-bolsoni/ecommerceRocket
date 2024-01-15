@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-let baseUrl = "http://localhost:3333";
+// let baseUrl = "http://localhost:3333";
+let baseUrl = "https://fakestoreapi.com";
 
-if(process.env.NODE_ENV !== 'production'){
+if(process.env.NODE_ENV === 'production'){
   baseUrl = "https://fakestoreapi.com";
 }
 
